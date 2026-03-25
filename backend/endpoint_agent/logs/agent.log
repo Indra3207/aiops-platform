@@ -1,0 +1,285 @@
+2026-03-17 01:26:30,679 | INFO | Starting Endpoint Agent
+2026-03-17 01:26:30,702 | INFO | System ID: SYS-001
+2026-03-17 01:26:30,702 | INFO | Telemetry interval set to 60 seconds
+2026-03-17 01:26:30,703 | INFO | Starting telemetry cycle
+2026-03-17 01:26:30,703 | WARNING | Heartbeat failed: 'heartbeat_api'
+2026-03-17 01:26:32,934 | INFO | Telemetry collected successfully
+2026-03-17 01:26:32,934 | ERROR | Telemetry cycle failed: 'telemetry_api'
+2026-03-17 01:27:32,935 | INFO | Starting telemetry cycle
+2026-03-17 01:27:32,936 | WARNING | Heartbeat failed: 'heartbeat_api'
+2026-03-17 01:27:33,997 | INFO | Telemetry collected successfully
+2026-03-17 01:27:33,998 | ERROR | Telemetry cycle failed: 'telemetry_api'
+2026-03-17 01:30:15,592 | INFO | Starting Endpoint Agent
+2026-03-17 01:30:15,621 | INFO | System ID: SYS-001
+2026-03-17 01:30:15,623 | INFO | Telemetry interval set to 60 seconds
+2026-03-17 01:30:15,624 | INFO | Starting telemetry cycle
+2026-03-17 01:30:15,646 | INFO | Heartbeat sent
+2026-03-17 01:30:17,398 | INFO | Telemetry collected successfully
+2026-03-17 01:30:17,409 | INFO | Telemetry sent successfully
+2026-03-17 01:30:17,410 | INFO | Telemetry sent successfully
+2026-03-17 01:31:17,411 | INFO | Starting telemetry cycle
+2026-03-17 01:31:17,434 | INFO | Heartbeat sent
+2026-03-17 01:31:18,467 | INFO | Telemetry collected successfully
+2026-03-17 01:31:18,471 | INFO | Telemetry sent successfully
+2026-03-17 01:31:18,471 | INFO | Telemetry sent successfully
+2026-03-18 21:33:42,924 | INFO | Starting Endpoint Agent
+2026-03-18 21:33:42,926 | INFO | System ID: SYS-001
+2026-03-18 21:33:42,926 | INFO | Telemetry interval set to 60 seconds
+2026-03-18 21:33:42,927 | INFO | Starting telemetry cycle
+2026-03-18 21:33:42,942 | INFO | Heartbeat sent
+2026-03-18 21:33:44,663 | INFO | Telemetry collected successfully
+2026-03-18 21:33:44,691 | INFO | Telemetry sent successfully
+2026-03-18 21:33:44,692 | INFO | Telemetry sent successfully
+2026-03-18 21:34:44,697 | INFO | Starting telemetry cycle
+2026-03-18 21:34:44,748 | INFO | Heartbeat sent
+2026-03-18 21:34:45,795 | INFO | Telemetry collected successfully
+2026-03-18 21:34:45,823 | INFO | Telemetry sent successfully
+2026-03-18 21:34:45,824 | INFO | Telemetry sent successfully
+2026-03-18 21:35:45,825 | INFO | Starting telemetry cycle
+2026-03-18 21:35:45,849 | INFO | Heartbeat sent
+2026-03-18 21:35:46,893 | INFO | Telemetry collected successfully
+2026-03-18 21:35:46,928 | INFO | Telemetry sent successfully
+2026-03-18 21:35:46,929 | INFO | Telemetry sent successfully
+2026-03-18 21:36:32,120 | INFO | Starting Endpoint Agent
+2026-03-18 21:36:32,121 | INFO | System ID: SYS-001
+2026-03-18 21:36:32,122 | INFO | Telemetry interval set to 60 seconds
+2026-03-18 21:36:32,122 | INFO | Starting telemetry cycle
+2026-03-18 21:36:32,153 | INFO | Heartbeat sent
+2026-03-18 21:36:33,843 | INFO | Telemetry collected successfully
+2026-03-18 21:36:33,870 | INFO | Telemetry sent successfully
+2026-03-18 21:36:33,871 | INFO | Telemetry sent successfully
+2026-03-24 23:59:55,941 | INFO | Starting Endpoint Agent
+2026-03-24 23:59:55,980 | INFO | System ID: SYS-001
+2026-03-24 23:59:55,980 | INFO | Telemetry interval set to 60 seconds
+2026-03-24 23:59:55,981 | INFO | Starting telemetry cycle
+2026-03-24 23:59:58,174 | INFO | Heartbeat sent
+2026-03-25 00:00:01,275 | INFO | Telemetry collected successfully
+2026-03-25 00:00:01,376 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:00:01,384 | INFO | Telemetry sent successfully
+2026-03-25 00:01:01,416 | INFO | Starting telemetry cycle
+2026-03-25 00:01:02,284 | INFO | Heartbeat sent
+2026-03-25 00:01:02,301 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:01:02,391 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:01:02,414 | INFO | Buffered telemetry cleared
+2026-03-25 00:01:03,535 | INFO | Telemetry collected successfully
+2026-03-25 00:01:03,559 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:01:03,563 | INFO | Telemetry sent successfully
+2026-03-25 00:02:03,619 | INFO | Starting telemetry cycle
+2026-03-25 00:02:07,024 | WARNING | Heartbeat failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=3)
+2026-03-25 00:02:07,073 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:02:07,312 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:02:07,358 | INFO | Buffered telemetry cleared
+2026-03-25 00:02:08,938 | INFO | Telemetry collected successfully
+2026-03-25 00:02:09,015 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:02:09,021 | INFO | Telemetry sent successfully
+2026-03-25 00:04:03,201 | INFO | Starting Endpoint Agent
+2026-03-25 00:04:03,205 | INFO | System ID: SYS-001
+2026-03-25 00:04:03,205 | INFO | Telemetry interval set to 60 seconds
+2026-03-25 00:04:03,205 | INFO | Starting telemetry cycle
+2026-03-25 00:04:03,591 | INFO | Heartbeat sent
+2026-03-25 00:04:03,594 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:04:03,666 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:04:03,675 | INFO | Buffered telemetry cleared
+2026-03-25 00:04:07,065 | INFO | Telemetry collected successfully
+2026-03-25 00:04:07,103 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:04:07,107 | INFO | Telemetry sent successfully
+2026-03-25 00:17:32,213 | INFO | Starting Endpoint Agent
+2026-03-25 00:17:32,241 | INFO | System ID: SYS-001
+2026-03-25 00:17:32,242 | INFO | Telemetry interval set to 60 seconds
+2026-03-25 00:17:32,243 | INFO | Starting telemetry cycle
+2026-03-25 00:17:35,341 | WARNING | Heartbeat failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Read timed out. (read timeout=3)
+2026-03-25 00:17:35,346 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:17:35,657 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:17:35,677 | INFO | Buffered telemetry cleared
+2026-03-25 00:17:40,287 | INFO | Telemetry collected successfully
+2026-03-25 00:17:40,347 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:17:40,352 | INFO | Telemetry sent successfully
+2026-03-25 00:18:40,380 | INFO | Starting telemetry cycle
+2026-03-25 00:18:42,724 | WARNING | Heartbeat failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:18:42,742 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:18:44,862 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:18:46,895 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:18:48,943 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:18:48,944 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:18:49,039 | INFO | Buffered telemetry cleared
+2026-03-25 00:18:51,013 | INFO | Telemetry collected successfully
+2026-03-25 00:18:53,079 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:18:55,127 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:18:57,171 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:18:57,172 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:18:57,176 | INFO | Telemetry sent successfully
+2026-03-25 00:19:57,199 | INFO | Starting telemetry cycle
+2026-03-25 00:19:58,572 | INFO | Heartbeat sent
+2026-03-25 00:19:58,581 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:19:58,626 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:19:58,654 | INFO | Buffered telemetry cleared
+2026-03-25 00:19:59,835 | INFO | Telemetry collected successfully
+2026-03-25 00:19:59,900 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:19:59,907 | INFO | Telemetry sent successfully
+2026-03-25 00:20:59,969 | INFO | Starting telemetry cycle
+2026-03-25 00:21:02,652 | WARNING | Heartbeat failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:21:02,968 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:21:05,013 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:21:07,046 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:21:09,072 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:21:09,073 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:21:09,191 | INFO | Buffered telemetry cleared
+2026-03-25 00:21:10,381 | INFO | Telemetry collected successfully
+2026-03-25 00:21:12,424 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:21:14,492 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:21:16,524 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:21:16,526 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:21:16,531 | INFO | Telemetry sent successfully
+2026-03-25 00:22:16,819 | INFO | Starting telemetry cycle
+2026-03-25 00:22:20,402 | WARNING | Heartbeat failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:22:20,595 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:22:22,659 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:22:24,690 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:22:26,736 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:22:26,737 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:22:26,974 | INFO | Buffered telemetry cleared
+2026-03-25 00:22:28,580 | INFO | Telemetry collected successfully
+2026-03-25 00:22:30,632 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:22:32,656 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:22:34,681 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:22:34,682 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:22:34,686 | INFO | Telemetry sent successfully
+2026-03-25 00:23:34,719 | INFO | Starting telemetry cycle
+2026-03-25 00:23:36,935 | WARNING | Heartbeat failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:23:36,976 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:23:39,015 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:23:41,054 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:23:43,102 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:23:43,103 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:23:44,044 | INFO | Buffered telemetry cleared
+2026-03-25 00:23:45,273 | INFO | Telemetry collected successfully
+2026-03-25 00:23:47,313 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:23:49,357 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:23:51,389 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:23:51,390 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:23:51,398 | INFO | Telemetry sent successfully
+2026-03-25 00:24:51,429 | INFO | Starting telemetry cycle
+2026-03-25 00:24:53,648 | WARNING | Heartbeat failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:24:53,762 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:24:55,817 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:24:57,864 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:24:59,891 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:24:59,893 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:24:59,906 | INFO | Buffered telemetry cleared
+2026-03-25 00:25:01,344 | INFO | Telemetry collected successfully
+2026-03-25 00:25:03,398 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:25:05,427 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:25:07,456 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:25:07,457 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:25:07,466 | INFO | Telemetry sent successfully
+2026-03-25 00:26:08,227 | INFO | Starting telemetry cycle
+2026-03-25 00:26:12,453 | WARNING | Heartbeat failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:26:12,467 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:26:14,488 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:26:16,534 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:26:18,584 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:26:18,585 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:26:18,612 | INFO | Buffered telemetry cleared
+2026-03-25 00:26:20,177 | INFO | Telemetry collected successfully
+2026-03-25 00:26:22,217 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:26:24,254 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:26:26,292 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:26:26,292 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:26:26,298 | INFO | Telemetry sent successfully
+2026-03-25 00:27:26,300 | INFO | Starting telemetry cycle
+2026-03-25 00:27:28,365 | WARNING | Heartbeat failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:27:28,370 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:27:30,415 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:27:32,432 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:27:34,471 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:27:34,471 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:27:34,479 | INFO | Buffered telemetry cleared
+2026-03-25 00:27:35,541 | INFO | Telemetry collected successfully
+2026-03-25 00:27:37,566 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:27:39,597 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:27:41,659 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:27:41,660 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:27:41,662 | INFO | Telemetry sent successfully
+2026-03-25 00:28:41,689 | INFO | Starting telemetry cycle
+2026-03-25 00:28:43,813 | WARNING | Heartbeat failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:28:43,819 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:28:45,875 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:28:47,926 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:28:49,965 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:28:49,966 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:28:50,115 | INFO | Buffered telemetry cleared
+2026-03-25 00:28:51,219 | INFO | Telemetry collected successfully
+2026-03-25 00:28:53,241 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:28:55,269 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:28:57,307 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 00:28:57,307 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 00:28:57,311 | INFO | Telemetry sent successfully
+2026-03-25 00:29:54,002 | INFO | Starting Endpoint Agent
+2026-03-25 00:29:54,018 | INFO | System ID: SYS-001
+2026-03-25 00:29:54,018 | INFO | Telemetry interval set to 60 seconds
+2026-03-25 00:29:54,019 | INFO | Starting telemetry cycle
+2026-03-25 00:29:55,482 | INFO | Heartbeat sent
+2026-03-25 00:29:55,483 | INFO | Found 1 buffered telemetry items
+2026-03-25 00:29:55,549 | INFO | Telemetry sent successfully
+2026-03-25 00:29:55,551 | INFO | Buffered telemetry cleared
+2026-03-25 22:05:19,393 | INFO | Starting Endpoint Agent
+2026-03-25 22:05:19,408 | INFO | System ID: SYS-001
+2026-03-25 22:05:19,408 | INFO | Telemetry interval set to 60 seconds
+2026-03-25 22:05:19,409 | INFO | Starting telemetry cycle
+2026-03-25 22:05:19,656 | INFO | Heartbeat sent
+2026-03-25 22:05:21,605 | INFO | Telemetry collected successfully
+2026-03-25 22:05:21,653 | INFO | Telemetry sent successfully
+2026-03-25 22:05:21,654 | INFO | Telemetry sent successfully
+2026-03-25 22:06:21,676 | INFO | Starting telemetry cycle
+2026-03-25 22:06:21,779 | INFO | Heartbeat sent
+2026-03-25 22:06:22,849 | INFO | Telemetry collected successfully
+2026-03-25 22:06:22,895 | INFO | Telemetry sent successfully
+2026-03-25 22:06:22,895 | INFO | Telemetry sent successfully
+2026-03-25 22:07:22,897 | INFO | Starting telemetry cycle
+2026-03-25 22:07:22,925 | INFO | Heartbeat sent
+2026-03-25 22:07:23,973 | INFO | Telemetry collected successfully
+2026-03-25 22:07:24,012 | INFO | Telemetry sent successfully
+2026-03-25 22:07:24,014 | INFO | Telemetry sent successfully
+2026-03-25 22:08:24,019 | INFO | Starting telemetry cycle
+2026-03-25 22:08:24,091 | INFO | Heartbeat sent
+2026-03-25 22:08:25,188 | INFO | Telemetry collected successfully
+2026-03-25 22:08:25,218 | INFO | Telemetry sent successfully
+2026-03-25 22:08:25,220 | INFO | Telemetry sent successfully
+2026-03-25 22:09:25,226 | INFO | Starting telemetry cycle
+2026-03-25 22:09:25,343 | INFO | Heartbeat sent
+2026-03-25 22:09:26,466 | INFO | Telemetry collected successfully
+2026-03-25 22:09:26,614 | INFO | Telemetry sent successfully
+2026-03-25 22:09:26,617 | INFO | Telemetry sent successfully
+2026-03-25 22:10:26,650 | INFO | Starting telemetry cycle
+2026-03-25 22:10:28,849 | WARNING | Heartbeat failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 22:10:30,005 | INFO | Telemetry collected successfully
+2026-03-25 22:10:32,055 | WARNING | Attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 22:10:34,078 | WARNING | Attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 22:10:36,102 | WARNING | Attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /telemetry (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 22:10:36,103 | ERROR | All retries failed. Saving telemetry to buffer
+2026-03-25 22:10:36,129 | INFO | Telemetry sent successfully
+2026-03-25 22:43:04,677 | INFO | Starting Endpoint Agent
+2026-03-25 22:43:04,680 | INFO | System ID: SYS-001
+2026-03-25 22:43:04,680 | INFO | Telemetry interval set to 60 seconds
+2026-03-25 22:43:04,680 | INFO | Starting telemetry cycle
+2026-03-25 22:43:06,748 | WARNING | Heartbeat attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 22:43:09,782 | WARNING | Heartbeat attempt 2 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 22:43:12,805 | WARNING | Heartbeat attempt 3 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 22:43:12,806 | ERROR | All heartbeat retries failed
+2026-03-25 22:50:35,460 | INFO | Starting Endpoint Agent
+2026-03-25 22:50:35,463 | INFO | System ID: SYS-001
+2026-03-25 22:50:35,463 | INFO | Telemetry interval set to 60 seconds
+2026-03-25 22:50:35,464 | INFO | Starting telemetry cycle
+2026-03-25 22:50:37,506 | WARNING | Heartbeat attempt 1 failed: HTTPConnectionPool(host='127.0.0.1', port=8000): Max retries exceeded with url: /heartbeat (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-25 22:55:45,607 | INFO | Starting Endpoint Agent
+2026-03-25 22:55:45,609 | INFO | System ID: SYS-001
+2026-03-25 22:55:45,610 | INFO | Telemetry interval set to 60 seconds
+2026-03-25 22:55:45,610 | INFO | Starting telemetry cycle
+2026-03-25 22:55:45,838 | INFO | Heartbeat sent
+2026-03-25 22:55:48,800 | INFO | Telemetry collected successfully
+2026-03-26 00:09:54,701 | INFO | Starting Endpoint Agent
+2026-03-26 00:09:54,735 | INFO | System ID: SYS-001
+2026-03-26 00:09:54,735 | INFO | Telemetry interval set to 60 seconds
+2026-03-26 00:09:54,735 | INFO | Starting telemetry cycle
+2026-03-26 00:09:55,063 | INFO | Heartbeat sent
+2026-03-26 00:09:57,071 | INFO | Telemetry collected successfully

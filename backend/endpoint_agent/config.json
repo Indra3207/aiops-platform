@@ -1,0 +1,7 @@
+{
+    "system_id": "SYS-001",
+    "collection_interval": 60,
+
+    "telemetry_api": "http://127.0.0.1:8000/telemetry",
+    "heartbeat_api": "http://127.0.0.1:8000/heartbeat"
+}
