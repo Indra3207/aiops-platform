@@ -11,8 +11,8 @@ from aiokafka import AIOKafkaProducer
 
 # 🔹 Configuration from Environment
 KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "localhost:9092")
-TELEMETRY_TOPIC = os.getenv("TELEMETRY_TOPIC", "telemetry-stream")
-HEARTBEAT_TOPIC = os.getenv("HEARTBEAT_TOPIC", "heartbeat-stream")
+TELEMETRY_TOPIC = os.getenv("TELEMETRY_TOPIC", "telemetry")
+HEARTBEAT_TOPIC = os.getenv("HEARTBEAT_TOPIC", "heartbeat")
 
 # 🔹 Logger Setup
 logging.basicConfig(

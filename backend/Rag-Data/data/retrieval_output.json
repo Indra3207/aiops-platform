@@ -1,0 +1,157 @@
+{
+  "query": "Windows Disk saturation due to critical utilization CPU at 48% memory above 93% disk above 99% memory pressure disk saturation with MemCompression process dominant critical severity",
+  "secondary_queries": [
+    "Windows MemCompression disk high disk saturation",
+    "Windows cascading failure memory disk multi-resource pressure all resources distressed"
+  ],
+  "results": [
+    {
+      "id": "KB-WIN-DISK-002",
+      "title": "Rapid Disk Saturation from Uncontrolled Application Log Growth",
+      "score": 0.6725,
+      "resource": "disk",
+      "scenario": "gradual_degradation",
+      "root_cause_type": "misconfiguration",
+      "severity": "HIGH",
+      "resolution": [
+        "Identify the largest files on the volume: Get-ChildItem -Path C:\\ -Recurse -File -ErrorAction SilentlyContinue | Sort-Object Length -Descending | Select-Object -First 20 FullName,@{N='GB';E={$_.Length/1GB}}",
+        "For IIS logs: compress and archive logs older than 7 days, delete logs older than 30 days",
+        "For SQL Server: EXEC sp_cycle_errorlog, configure max errorlog files via SSMS",
+        "For application logs: change logging level from DEBUG to WARN/ERROR in production config",
+        "Disable FREB if enabled: Remove-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST' -filter 'system.webServer/tracing/traceFailedRequests' -name '.'",
+        "Stop rogue ETW sessions: logman query -ets, then logman stop <session_name> -ets"
+      ],
+      "explanation": "Production Windows servers frequently run applications that generate verbose logging: IIS creates per-site W3C log files that can grow to GB/day under heavy traffic; SQL Server errorlog can grow unbounded if frequent warnings are logged; .NET applications using NLog/log4net/Serilog may write DEBUG-level logs to file without rotation; and custom ETW trace sessions may write .etl files continuously. When log rotation or retention is misconfigured, the write rate can exceed 5-50 MB/s depending on request volume. NTFS handles large files efficiently but the volume fills regardless. The fill_rate signal is the key differentiator: slow fill (<1 MB/s) suggests cache accumulation, while fast fill (>5 MB/s) indicates active log writes. CPU and memory are typically unaffected because the bottleneck is purely I/O and storage capacity.",
+      "causes": [
+        "IIS W3C logging set to unlimited file size without log rotation scheduled",
+        "Application logging level set to DEBUG/TRACE in production inadvertently",
+        "SQL Server errorlog cycling disabled or set to retain too many logs",
+        "Failed request tracing (FREB) enabled in IIS generating MB per failed request",
+        "ETW trace session left running capturing verbose kernel or .NET events"
+      ],
+      "contradictions": [
+        "If disk.fill_rate < 1 MB/s, the growth is too slow for active logging Ã¢â‚¬- consider update cache or temp files",
+        "If cpu.sustained_high = true, the disk fill may be pagefile expansion from memory pressure, not logging",
+        "If the large files are .bak or .trn, this is a database backup issue, not a logging issue"
+      ],
+      "related_patterns": [
+        "KB-WIN-DISK-001",
+        "KB-WIN-CASCADE-001"
+      ],
+      "prevention": [
+        "Configure log rotation for ALL log sources: IIS (daily rotation, max size), SQL (max 10 errorlog files), application (rolling file, 100MB max)",
+        "Implement disk.fill_rate_mb_sec > 3 alert for early detection of runaway logging",
+        "Use Log Analytics or Splunk forwarders to ship logs off-box and enforce local retention limits",
+        "Audit logging levels: ensure production servers never run at DEBUG/TRACE level",
+        "Set disk.current warning at 80% and critical at 90% with automated log cleanup scripts"
+      ],
+      "confidence_factors": [
+        "High disk.fill_rate_mb_sec (>5) rules out slow cache accumulation and points to active writes",
+        "Low cpu and memory usage confirms this is an I/O-only issue, not compute or memory driven",
+        "disk.risk = true confirms actionable threshold"
+      ]
+    },
+    {
+      "id": "KB-WIN-CASCADE-001",
+      "title": "Cascading Failure: Memory Exhaustion -> Pagefile Disk Thrash -> CPU Spike",
+      "score": 0.5716,
+      "resource": "memory",
+      "scenario": "cascade_failure",
+      "root_cause_type": "workload",
+      "severity": "CRITICAL",
+      "resolution": [
+        "IMMEDIATE: Identify and kill the largest memory consumer if safe: Get-Process | Sort-Object WorkingSet64 -Descending | Select-Object -First 5",
+        "If the system is still responsive, flush the standby list: use RAMMap > Empty > Empty Standby List",
+        "Check pagefile location and disk health: wmic pagefile list, check disk queue length in perfmon",
+        "Move pagefile to a dedicated fast disk if possible",
+        "If VM: hot-add memory if hypervisor supports it, or live migrate to a less contended host",
+        "After stabilization: investigate the memory origin Ã¢â‚¬- check for leak_pattern, identify the process that triggered the cascade"
+      ],
+      "explanation": "This is the classic Windows cascading failure pattern. Phase 1: A process (or aggregate workload) exhausts physical RAM. Phase 2: The Memory Manager activates MemCompression, but cannot keep pace. Pages spill to the pagefile via the Modified Page Writer. Phase 3: Pagefile writes saturate the disk I/O subsystem, especially on spinning disks or thin-provisioned virtual disks. The disk queue length spikes. Phase 4: Application threads issuing memory allocations that trigger hard page faults (reading back from pagefile) block in kernel mode waiting for disk I/O. The CPU shows high utilization, but much of it is kernel time (page fault handling, context switching). The System process becomes dominant because pagefile I/O is attributed to the kernel. Critically, treating this as a CPU problem (adding CPU, killing CPU-heavy processes) will NOT help. The resolution must target memory, the origin of the cascade.",
+      "causes": [
+        "Undetected memory leak accumulating over days",
+        "Sudden burst memory demand (large report generation, data import)",
+        "Multiple applications competing for insufficient RAM",
+        "Pagefile on a slow or contended disk (shared with data/logs)",
+        "VM memory balloon driver reclaiming RAM from guest"
+      ],
+      "contradictions": [
+        "If disk.fill_rate is high but memory.current < 70%, the disk fill is from application writes, NOT paging",
+        "If cpu.spike = true but cpu.sustained_high = false, this is a transient event, not a cascade",
+        "If only one resource is stressed (e.g., CPU only), this is a single-resource issue, not a cascade",
+        "If the dominant process is a user application (not System/MemCompression), the CPU issue is application-driven"
+      ],
+      "related_patterns": [
+        "KB-WIN-MEM-001",
+        "KB-WIN-PROC-001",
+        "KB-WIN-DISK-002"
+      ],
+      "prevention": [
+        "Implement early warning at memory.current > 80% BEFORE cascade initiates",
+        "Place pagefile on a dedicated, fast disk (SSD preferred) separate from OS and data volumes",
+        "Set memory.growth_rate alerts for sustained positive rates",
+        "Implement automated memory pressure response: restart known-risky services when memory.current > 85%",
+        "Capacity plan with headroom: maintain 20% free physical RAM at peak load"
+      ],
+      "confidence_factors": [
+        "Simultaneous distress across memory, disk, and CPU is the hallmark of a cascade",
+        "System or MemCompression as dominant process confirms kernel-level memory management activity",
+        "cpu.variance > 15 indicates irregular CPU caused by I/O waits, not steady computation",
+        "disk.fill_rate > 2 MB/s with memory > 90% confirms pagefile expansion as the disk consumer"
+      ]
+    },
+    {
+      "id": "KB-WIN-CPU-003",
+      "title": "Sustained CPU from SearchIndexer.exe Rebuilding Windows Search Index",
+      "score": 0.5716,
+      "resource": "cpu",
+      "scenario": "background_process",
+      "root_cause_type": "system_behavior",
+      "severity": "MEDIUM",
+      "resolution": [
+        "Verify indexing status: Check Control Panel > Indexing Options > 'Indexing complete' vs items remaining",
+        "If re-index unnecessary: stop the service temporarily: Stop-Service WSearch",
+        "If index is corrupt: rebuild cleanly Ã¢â‚¬- delete C:\\ProgramData\\Microsoft\\Search\\Data\\Applications\\Windows\\Windows.edb, restart WSearch",
+        "Reduce indexing scope: remove unnecessary locations from Indexing Options > Modify",
+        "Throttle indexer: set HKLM\\SOFTWARE\\Microsoft\\Windows Search\\Gathering Manager\\DisableBackOff = 0 to ensure backoff logic is enabled",
+        "On servers: consider disabling Windows Search entirely if not required: Set-Service WSearch -StartupType Disabled"
+      ],
+      "explanation": "Windows Search Service (WSearch) maintains a content index database (Windows.edb) for file and Outlook content. SearchIndexer.exe is the user-mode process that crawls indexed locations, extracts content using IFilter/IPropertyHandler interfaces, and updates the ESE (Extensible Storage Engine) database. During a full rebuild Ã¢â‚¬- triggered by index corruption, ESE database errors, indexing scope expansion, or OS updates Ã¢â‚¬- the process systematically reads every file in the indexed scope, which on a file server with millions of documents causes sustained CPU (content extraction, especially for Office documents and PDFs) and disk I/O (reading source files, writing to Windows.edb). The process is designed to yield to foreground work via the indexer backoff logic, but on servers (where there is no foreground user), it runs at near-full capacity.",
+      "causes": [
+        "Windows Search index corruption (Windows.edb damaged)",
+        "OS upgrade or major Windows Update triggering index schema change requiring rebuild",
+        "Administrator manually rebuilding index via Indexing Options > Advanced > Rebuild",
+        "Indexing scope expanded to include large file shares or additional mailboxes",
+        "Third-party IFilter crash causing repeated re-indexing of the same files"
+      ],
+      "contradictions": [
+        "If SearchIndexer cpu_share < 10% and cpu.sustained_high = true, another process is the CPU consumer",
+        "If cpu.volatility = high, this is not steady indexing Ã¢â‚¬- may be a filter crash-loop",
+        "If disk.current > 95%, prioritize disk saturation; indexer may be a secondary contributor"
+      ],
+      "related_patterns": [
+        "KB-WIN-CPU-001",
+        "KB-WIN-CPU-002",
+        "KB-WIN-DISK-002"
+      ],
+      "prevention": [
+        "Disable Windows Search on servers where full-text search is not required",
+        "If required, limit indexing scope to only necessary directories",
+        "Monitor for SearchIndexer.exe in process.dominant alerts as operational awareness",
+        "Schedule index maintenance during off-peak hours",
+        "Ensure ESE database integrity with regular esentutl checks"
+      ],
+      "confidence_factors": [
+        "SearchIndexer.exe as dominant process is a definitive indicator of active indexing work",
+        "Sustained CPU with stable trend and low volatility matches the steady indexing workload",
+        "Concurrent disk activity confirms file reading and database writes"
+      ]
+    }
+  ],
+  "metadata": {
+    "total_candidates": 14,
+    "post_filter": 5,
+    "primary_resource_filter": "disk",
+    "final_count": 3
+  }
+}
