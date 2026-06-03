@@ -1,50 +1,69 @@
+"""
+Analysis Service — Kafka Client (async, matches rest of pipeline)
+Consumes from: analysis-stream  (Diagnosis Agent output)
+Produces to:   ui-dashboard-stream  (Final merged response for frontend)
+"""
+
 import json
 import logging
-from kafka import KafkaConsumer, KafkaProducer
-from .config import config
+from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
+from config import config
 
 logger = logging.getLogger(__name__)
 
+
 class AnalysisKafkaClient:
     def __init__(self):
+        self.consumer: AIOKafkaConsumer = None
+        self.producer: AIOKafkaProducer = None
+
+    async def start(self):
         try:
-            self.consumer = KafkaConsumer(
+            self.consumer = AIOKafkaConsumer(
                 config.CONSUME_TOPIC,
-                bootstrap_servers=[config.KAFKA_BROKER],
+                bootstrap_servers=config.KAFKA_BROKER,
                 group_id=config.GROUP_ID,
-                auto_offset_reset='latest',
+                auto_offset_reset="latest",
                 enable_auto_commit=True,
-                value_deserializer=lambda x: json.loads(x.decode('utf-8'))
+                value_deserializer=lambda m: json.loads(m.decode("utf-8")),
             )
-            
-            self.producer = KafkaProducer(
-                bootstrap_servers=[config.KAFKA_BROKER],
-                value_serializer=lambda x: json.dumps(x).encode('utf-8')
+            self.producer = AIOKafkaProducer(
+                bootstrap_servers=config.KAFKA_BROKER,
+                value_serializer=lambda v: json.dumps(v).encode("utf-8"),
             )
-            
-            logger.info(f"Kafka initialized. Consuming from {config.CONSUME_TOPIC}, Producing to {config.PRODUCE_TOPIC}")
+            await self.consumer.start()
+            await self.producer.start()
+            logger.info(
+                f"Kafka ready — consuming: {config.CONSUME_TOPIC}, "
+                f"producing: {config.PRODUCE_TOPIC}"
+            )
         except Exception as e:
-            logger.error(f"Kafka connection failed. Ensure broker {config.KAFKA_BROKER} is running.")
-            # Do not throw, allow graceful degradation if developing locally without kafka
+            logger.error(f"Kafka connection failed: {e}")
             self.consumer = None
             self.producer = None
 
-    def consume(self):
-        if not self.consumer:
-            logger.warning("Consumer not initialized. Yielding empty.")
-            return []
-            
-        return self.consumer
+    async def stop(self):
+        if self.consumer:
+            await self.consumer.stop()
+        if self.producer:
+            await self.producer.stop()
 
-    def produce(self, payload: dict):
+    async def consume(self):
+        """Async generator that yields deserialized diagnosis payloads."""
+        if not self.consumer:
+            logger.warning("Kafka consumer not initialized — yielding nothing.")
+            return
+        async for msg in self.consumer:
+            yield msg.value
+
+    async def produce(self, payload: dict):
         if not self.producer:
-            logger.warning("Producer not initialized. Printing to console instead.")
+            logger.warning("Kafka producer not initialized — printing to console.")
             print(json.dumps(payload, indent=2))
             return
-            
         try:
-            self.producer.send(config.PRODUCE_TOPIC, value=payload)
-            self.producer.flush()
-            logger.info(f"Successfully published Analysis output for {payload.get('system_info', {}).get('system_id')} to {config.PRODUCE_TOPIC}")
+            await self.producer.send_and_wait(config.PRODUCE_TOPIC, value=payload)
+            sys_id = payload.get("system_info", {}).get("system_id", "unknown")
+            logger.info(f"Published analysis output for {sys_id} → {config.PRODUCE_TOPIC}")
         except Exception as e:
-            logger.error(f"Failed to produce message: {e}")
+            logger.error(f"Kafka produce failed: {e}")

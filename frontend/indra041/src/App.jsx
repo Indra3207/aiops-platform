@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
 import { supabase } from "./supabaseClient";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Login from "./components/auth/Login";
 import Signup from "./components/auth/Signup";
 import AdminLayout from "./components/layouts/AdminLayout";
 import TechnicianLayout from "./components/layouts/TechnicianLayout";
 import UserLayout from "./components/layouts/UserLayout";
+import { SystemDataProvider } from "./context/SystemDataContext";
 
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 
-function App() {
+const App = () => {
 
   const [page, setPage] = useState("login");
   const [isAuth, setIsAuth] = useState(false);
@@ -52,27 +54,18 @@ function App() {
   }, []);
 
   const loginSuccess = (role, email) => {
-
     setIsAuth(true);
     setUserRole(role);
-
-    setUserData({
-      role,
-      email
-    });
-
+    setUserData({ role, email });
   };
 
   const signupSuccess = (data) => {
-
     setIsAuth(true);
     setUserRole(data.role);
-
     setUserData(data);
-
   };
 
-  const logout = async () => {
+  const handleLogout = async () => {
 
     await supabase.auth.signOut();
 
@@ -87,44 +80,56 @@ function App() {
     return <div className="p-6 text-center">Loading...</div>;
   }
 
-  if (!isAuth) {
-
-    return page === "login" ? (
-
-      <Login
-        onLoginSuccess={loginSuccess}
-        goToSignup={() => setPage("signup")}
-      />
-
-    ) : (
-
-      <Signup
-        onSignupSuccess={signupSuccess}
-        goToLogin={() => setPage("login")}
-      />
-
-    );
-
+  let content = null;
+  switch (userRole) {
+    case "admin":
+      content = (
+        <ProtectedRoute userRole={userRole} allowedRole="admin">
+          <SystemDataProvider>
+            <AdminLayout userData={userData} onLogout={handleLogout} />
+          </SystemDataProvider>
+        </ProtectedRoute>
+      );
+      break;
+    case "technician":
+      content = (
+        <ProtectedRoute userRole={userRole} allowedRole="technician">
+          <SystemDataProvider>
+            <TechnicianLayout userData={userData} onLogout={handleLogout} />
+          </SystemDataProvider>
+        </ProtectedRoute>
+      );
+      break;
+    case "user":
+      content = (
+        <ProtectedRoute userRole={userRole} allowedRole="user">
+          <SystemDataProvider>
+            <UserLayout userData={userData} onLogout={handleLogout} />
+          </SystemDataProvider>
+        </ProtectedRoute>
+      );
+      break;
+    default:
+      content = !isAuth ? (
+        page === "login" ? (
+          <Login
+            onLoginSuccess={loginSuccess}
+            goToSignup={() => setPage("signup")}
+          />
+        ) : (
+          <Signup
+            onSignupSuccess={signupSuccess}
+            goToLogin={() => setPage("login")}
+          />
+        )
+      ) : null;
   }
 
-  if (userRole === "admin") {
-    return (
-      <ProtectedRoute userRole={userRole} allowedRole="admin">
-        <AdminLayout userData={userData} onLogout={logout} />
-      </ProtectedRoute>
-    );
-  }
-
-  if (userRole === "technician") {
-    return (
-      <ProtectedRoute userRole={userRole} allowedRole="technician">
-        <TechnicianLayout userData={userData} onLogout={logout} />
-      </ProtectedRoute>
-    );
-  }
-
-  return <UserLayout userData={userData} onLogout={logout} />;
-
-}
+  return (
+    <Routes>
+      <Route path="/" element={content} />
+    </Routes>
+  );
+};
 
 export default App;
