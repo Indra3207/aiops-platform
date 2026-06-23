@@ -16,7 +16,8 @@
 7. [Infrastructure](#7-infrastructure)
 8. [Final API Response Schema](#8-final-api-response-schema)
 9. [Test Results](#9-test-results)
-10. [Gap Analysis — Where You're Lagging](#10-gap-analysis--where-youre-lagging)
+10. [Gap Analysis — Where You're Lagging]
+(#10-gap-analysis--where-youre-lagging)
 11. [Recommended Roadmap](#11-recommended-roadmap)
 
 ---
@@ -188,14 +189,14 @@ An **AI-powered AIOps (Artificial Intelligence for IT Operations) platform** tha
 
 **Purpose:** API Gateway — receives HTTP telemetry from agents, publishes to Kafka.
 
-**Tech:** FastAPI + aiokafka (async Kafka producer)
+**Tech:** FastAPI + aiokafka (async Kafka producer) 
 
 **Endpoints:**
 | Method | Path | Purpose |
 |--------|------|---------|
 | POST | `/telemetry` | Receives full telemetry payload, publishes to `telemetry` topic |
 | POST | `/heartbeat` | Receives heartbeat signals, publishes to `heartbeat` topic |
-| GET | `/health` | Health check with Kafka connection status |
+| GET  | `/health`     | Health check with Kafka connection status |
 
 **Key Design:** Uses async lifespan management for Kafka producer lifecycle.
 

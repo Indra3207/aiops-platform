@@ -1,0 +1,185 @@
+# ============================================================
+# NexusOps AIOps Platform — Full Stack Docker Compose
+# ============================================================
+# Usage:
+#   docker-compose up -d          (start all services)
+#   docker-compose logs -f        (follow logs)
+#   docker-compose down           (stop all)
+#   docker-compose down -v        (stop + delete volumes)
+# ============================================================
+
+services:
+
+  # ── Infrastructure ────────────────────────────────────────────
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    healthcheck:
+      test: ["CMD", "bash", "-c", "echo ruok | nc localhost 2181"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,PLAINTEXT_INTERNAL://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERNAL
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    healthcheck:
+      test: ["CMD", "kafka-topics", "--bootstrap-server", "kafka:29092", "--list"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  mongodb:
+    image: mongo:7.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: metrics_db
+    volumes:
+      - mongo_data:/data/db
+
+  # ── Backend Services ──────────────────────────────────────────
+
+  central-server:
+    build:
+      context: ./backend/CentralServer
+    container_name: central-server
+    ports:
+      - "8000:8000"
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      TELEMETRY_TOPIC: telemetry
+      HEARTBEAT_TOPIC: heartbeat
+    depends_on:
+      kafka:
+        condition: service_healthy
+    restart: unless-stopped
+
+  monitoring-service:
+    build:
+      context: ./backend/PROCESSING_SERVICES/monitoring_service
+    container_name: monitoring-service
+    ports:
+      - "8001:8001"
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      TELEMETRY_TOPIC: telemetry
+      ALERT_TOPIC: alerts-stream
+    depends_on:
+      kafka:
+        condition: service_healthy
+    restart: unless-stopped
+
+  feature-service:
+    build:
+      context: ./backend/PROCESSING_SERVICES/feature_service
+    container_name: feature-service
+    ports:
+      - "8003:8003"
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      INPUT_TOPIC: telemetry
+      OUTPUT_TOPIC: feature-stream
+      WINDOW_SIZE: "5"
+    depends_on:
+      kafka:
+        condition: service_healthy
+    restart: unless-stopped
+
+  diagnosis-agent:
+    build:
+      context: ./backend/PROCESSING_SERVICES/diagnosis_agent
+    container_name: diagnosis-agent
+    ports:
+      - "8004:8004"
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      FEATURE_TOPIC: feature-stream
+      ALERT_TOPIC: alerts-stream
+      OUTPUT_TOPIC: analysis-stream
+    depends_on:
+      kafka:
+        condition: service_healthy
+    restart: unless-stopped
+
+  analysis-service:
+    build:
+      context: ./backend/PROCESSING_SERVICES/analysis_service
+    container_name: analysis-service
+    ports:
+      - "8002:8002"
+    environment:
+      KAFKA_BROKER: kafka:29092
+      CONSUME_TOPIC: analysis-stream
+      PRODUCE_TOPIC: ui-dashboard-stream
+      GROUP_ID: analysis-service-group
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      LLM_MODEL: ${LLM_MODEL:-gpt-4o}
+      LLM_TIMEOUT: "30"
+      CENTRAL_SERVER_URL: http://central-server:8000
+      CENTRAL_SERVER_WS_PUSH_ENDPOINT: http://central-server:8000/api/analysis-update
+      RAG_DATA_DIR: /app/rag_data
+    volumes:
+      - ./backend/Rag-Data:/app/rag_data:ro
+    depends_on:
+      kafka:
+        condition: service_healthy
+    restart: unless-stopped
+
+  storage-service:
+    build:
+      context: ./backend/PROCESSING_SERVICES/storage_service
+    container_name: storage-service
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      KAFKA_TOPIC: telemetry
+      CONSUMER_GROUP: storage-group
+      MONGO_URI: mongodb://mongodb:27017
+      DB_NAME: metrics_db
+    depends_on:
+      kafka:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+    restart: unless-stopped
+
+  # ── Frontend ──────────────────────────────────────────────────
+
+  frontend:
+    build:
+      context: ./frontend/indra041
+      args:
+        REACT_APP_SUPABASE_URL: ${REACT_APP_SUPABASE_URL:-}
+        REACT_APP_SUPABASE_ANON_KEY: ${REACT_APP_SUPABASE_ANON_KEY:-}
+        REACT_APP_API_URL: ${REACT_APP_API_URL:-http://localhost:8000}
+        REACT_APP_WS_URL: ${REACT_APP_WS_URL:-ws://localhost:8000/ws}
+    container_name: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - central-server
+    restart: unless-stopped
+
+volumes:
+  mongo_data:

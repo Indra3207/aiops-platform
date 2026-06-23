@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 from typing import Dict, Any, Set
 
 from fastapi import FastAPI, HTTPException, WebSocket, WebSocketDisconnect
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from aiokafka import AIOKafkaProducer
 
@@ -55,6 +56,15 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title="Intelligent Metrics Server", lifespan=lifespan)
+
+# 🔹 CORS — allow frontend to connect from any origin
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # In production, restrict to your frontend domain
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 # 🔹 Flexible Telemetry Model

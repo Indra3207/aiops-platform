@@ -11,7 +11,7 @@ class Config:
     # analysis_service/ → PROCESSING_SERVICES/ → backend/ → Important/
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
     BACKEND_DIR = os.path.abspath(os.path.join(BASE_DIR, "..", ".."))
-    RAG_DATA_DIR = os.path.join(BACKEND_DIR, "Rag-Data")
+    RAG_DATA_DIR = os.getenv("RAG_DATA_DIR", os.path.join(BACKEND_DIR, "Rag-Data"))
     KB_PATH = os.path.join(RAG_DATA_DIR, "data", "kb_entries_all.json")
     INDEX_DIR = os.path.join(RAG_DATA_DIR, "data", "index_cache")
 
