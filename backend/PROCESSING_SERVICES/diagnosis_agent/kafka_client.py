@@ -4,19 +4,21 @@ from aiokafka import AIOKafkaConsumer, AIOKafkaProducer
 
 class KafkaClient:
     def __init__(self, bootstrap_servers):
+        self.bootstrap_servers = bootstrap_servers
+        self.consumer = None
+        self.producer = None
+
+    async def start(self):
         self.consumer = AIOKafkaConsumer(
             "feature-stream",
-            bootstrap_servers=bootstrap_servers,
+            bootstrap_servers=self.bootstrap_servers,
             value_deserializer=lambda m: json.loads(m.decode("utf-8")),
             group_id="diagnosis-agent-group",
             auto_offset_reset="latest"
         )
-
         self.producer = AIOKafkaProducer(
-            bootstrap_servers=bootstrap_servers
+            bootstrap_servers=self.bootstrap_servers
         )
-
-    async def start(self):
         await self.consumer.start()
         await self.producer.start()
 

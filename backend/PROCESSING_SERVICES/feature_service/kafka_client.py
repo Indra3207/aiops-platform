@@ -8,23 +8,24 @@ class KafkaClient:
         self.bootstrap_servers = bootstrap_servers
         self.topic_in = topic_in
         self.topic_out = topic_out
-        
-        self.consumer = AIOKafkaConsumer(
-            self.topic_in,
-            bootstrap_servers=self.bootstrap_servers,
-            group_id="feature-aggregator-group",
-            value_deserializer=lambda m: json.loads(m.decode("utf-8")),
-            auto_offset_reset="earliest"
-        )
-        self.producer = AIOKafkaProducer(
-            bootstrap_servers=self.bootstrap_servers
-        )
+        self.consumer = None
+        self.producer = None
         self.connected = False
 
     async def start(self):
         retries = 5
         for i in range(retries):
             try:
+                self.consumer = AIOKafkaConsumer(
+                    self.topic_in,
+                    bootstrap_servers=self.bootstrap_servers,
+                    group_id="feature-aggregator-group",
+                    value_deserializer=lambda m: json.loads(m.decode("utf-8")),
+                    auto_offset_reset="earliest"
+                )
+                self.producer = AIOKafkaProducer(
+                    bootstrap_servers=self.bootstrap_servers
+                )
                 await self.consumer.start()
                 await self.producer.start()
                 self.connected = True
